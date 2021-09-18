@@ -1,0 +1,9 @@
+name = "hope"
+version = "1.0.0"
+license = "BSD"
+author = ["Damian Rouson"]
+maintainer = "damian@sourceryinstitute.org"
+copyright = "2020 Sourcery Institute"
+
+[dependencies]
+assert = {git = "https://github.com/sourceryinstitute/assert", tag = "1.3.0"}
