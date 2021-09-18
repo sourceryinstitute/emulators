@@ -1,30 +1,28 @@
-Hope
-====
+Emulators
+=========
 
 Motivation and Usage
 --------------------
 
 Are you hoping for a world with full compiler support for recent Fortran
-standards?  Emulating an unsupported feature facilitates using it prior to
-compiler support.  This path offers minimal impact on future code. Switching to
-the compiler's version of a feature might involve little more than toggling a
+standards?  Emulating an unsupported feature facilitates using the feature prior
+to compiler support.  This path offers minimal impact on future code. Switching
+to the compiler's version of a feature might involve little more than toggling a
 preprocessor macro:
 ```fortran
-#ifdef EMULATE_COLLECTIVE_SUBROUTINES
-  use hope, only : co_sum, co_broadcast, co_min, co_max, co_reduce
+#ifdef EMULATE_COLLECTIVES
+  use collectives_m, only : co_sum
 #endif
 ```
-and then passing the macro at build time.  For example, when building
-an application with the Fortran Package Manager ([fpm]), one might
-replace the emulated collective subroutines with the corresponding
-compiler feature by passing `--flag -DEMULATE_COLLECTIVE_SUBROUTINES`
-as an argument to `fpm`.
+and then not passing the macro at `EMULATE_COLLECTIVES` to the compiler to
+turn eliminate the emulated version of `co_sum` from the source code before
+compiling.
 
-Hope contains a few emulated procedures and preprocessor macros that
+Emulators contains a few emulated procedures and preprocessor macros that
 trigger their compilation.  We make no attempt at comprehensiveness. 
 We support only the procedures, arguments, and argument types, kinds, 
 and ranks that we have found useful in our own work.  We welcome pull 
-requests that expand Hope's emulators in number or capability.
+requests that expand Emulators's emulators in number or capability.
 
 Contents
 --------
@@ -39,17 +37,38 @@ which provides a parallel, collective `logical` operation analogous to the
 
 Prerequisites
 -------------
-Hope builds with a Fortran compiler that supports the following features:
+Emulators builds with a Fortran compiler that supports the following features:
 
 * **Error stop**
-   - Hope's only dependency, [Assert], uses Fortran 2018 `error stop`,
-which several compilers have supported before supporting the features
-that Hope emulates.  Please submit an [issue] or [pull request]
-if you prefer to have the option to build without Assert.
+   - Emulators's only dependency, [Assert], uses Fortran 2018 `error stop`,
+     which several compilers have supported before supporting the features
+     that Emulators emulates.  Please submit an [issue] or [pull request]
+     if you prefer to have the option to build without Assert.
 
 * **Coarrays and synchronization**
-   - Hope's Fortran 2018 collective subroutine emulators use Fortran 2008 coarrays
-and synchronization.
+   - Emulators's Fortran 2018 collective-subroutine emulators use Fortran 2008
+     coarrays and synchronization.
+
+Downloand, building and testing
+-------------------------------
+# Parallel execution (recommended)
+With `gfortran` and OpenCoarrays installed, execute the following commands in
+a `bash`-like shell to include all emulators in the build:
+```
+git clone git@github.com:sourceryinstitute/emulators
+fpm test \
+  --runner cafrun -n 2 \
+  --compiler caf \
+  --flag "-cpp -DEMULATE_INTRINSICS -DEMULATE_COLLECTIVES"
+```
+
+# Serial execution
+With `gfortran` installed, execute the following commands in
+a `bash`-like shell to include all emulators in the build:
+```
+git clone git@github.com:sourceryinstitute/emulators
+fpm test --flag "-cpp -DEMULATE_INTRINSICS -DEMULATE_COLLECTIVES"
+```
 
 [Sourcery]: https://github.com/sourceryinstitute/sourcery
 [Assert]: https://github.com/sourceryinstitute/assert
