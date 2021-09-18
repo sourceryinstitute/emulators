@@ -67,7 +67,7 @@ With `gfortran` installed, execute the following commands in
 a `bash`-like shell to include all emulators in the build:
 ```
 git clone git@github.com:sourceryinstitute/emulators
-fpm test --flag "-cpp -DEMULATE_INTRINSICS -DEMULATE_COLLECTIVES"
+fpm test --flag "-cpp -DEMULATE_INTRINSICS -DEMULATE_COLLECTIVES -fcoarray=single"
 ```
 
 [Sourcery]: https://github.com/sourceryinstitute/sourcery
