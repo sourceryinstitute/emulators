@@ -13,7 +13,7 @@ contains
     module procedure ensure_non_empty_instrinsic_m
     end procedure
 
-#if defined EMULATE_INTRINSIC_FUNCTIONS || defined EMULATE_FINDLOC
+#if defined EMULATE_INTRINSICS || defined EMULATE_FINDLOC
 
   module procedure findloc_integer_dim1
 
@@ -93,6 +93,6 @@ contains
 
   end procedure
 
-#endif /* EMULATE_INTRINSIC_FUNCTIONS || defined EMULATE_FINDLOC */
+#endif /* EMULATE_INTRINSICS || defined EMULATE_FINDLOC */
 
 end submodule intrinsics_s

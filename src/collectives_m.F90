@@ -12,13 +12,13 @@ module collectives_m
   implicit none
 
   private
-#if defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_SUM
+#if defined EMULATE_COLLECTIVES || defined EMULATE_CO_SUM
   public :: co_sum
 #endif
-#if defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_BROADCAST
+#if defined EMULATE_COLLECTIVES || defined EMULATE_CO_BROADCAST
   public :: co_broadcast
 #endif
-#if defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_REDUCE
+#if defined EMULATE_COLLECTIVES || defined EMULATE_CO_REDUCE
   public :: co_reduce
 #endif
 
@@ -27,7 +27,7 @@ module collectives_m
     end subroutine
   end interface
 
-#if defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_SUM
+#if defined EMULATE_COLLECTIVES || defined EMULATE_CO_SUM
 
   interface co_sum
 
@@ -74,9 +74,9 @@ module collectives_m
 
   end interface
 
-#endif /* defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_SUM */
+#endif /* defined EMULATE_COLLECTIVES || defined EMULATE_CO_SUM */
 
-#if defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_BROADCAST
+#if defined EMULATE_COLLECTIVES || defined EMULATE_CO_BROADCAST
 
   interface co_broadcast
 
@@ -131,9 +131,9 @@ module collectives_m
 
   end interface
 
-#endif /* defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_BROADCAST */
+#endif /* defined EMULATE_COLLECTIVES || defined EMULATE_CO_BROADCAST */
 
-#if defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_REDUCE
+#if defined EMULATE_COLLECTIVES || defined EMULATE_CO_REDUCE
 
   interface co_reduce
 
@@ -155,6 +155,6 @@ module collectives_m
 
   end interface
 
-#endif /* defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_REDUCE */
+#endif /* defined EMULATE_COLLECTIVES || defined EMULATE_CO_REDUCE */
 
 end module collectives_m

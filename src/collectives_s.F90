@@ -13,7 +13,7 @@ contains
   module procedure ensure_non_empty_collectives_m
   end procedure
 
-#if defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_SUM
+#if defined EMULATE_COLLECTIVES || defined EMULATE_CO_SUM
 
   module procedure co_sum_integer
     !! Binary tree collective sum reduction
@@ -413,9 +413,9 @@ contains
 
   end procedure
 
-#endif /* EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_SUM*/
+#endif /* EMULATE_COLLECTIVES || defined EMULATE_CO_SUM*/
 
-#if defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_BROADCAST
+#if defined EMULATE_COLLECTIVES || defined EMULATE_CO_BROADCAST
 
   module procedure co_broadcast_logical
     !! Binary tree collective broadcast
@@ -755,9 +755,9 @@ contains
 
   end procedure
 
-#endif /* defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_BROADCAST */
+#endif /* defined EMULATE_COLLECTIVES || defined EMULATE_CO_BROADCAST */
 
-#if defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_REDUCE
+#if defined EMULATE_COLLECTIVES || defined EMULATE_CO_REDUCE
 
   module subroutine co_reduce_logical(a,operation,result_image,stat,errmsg)
     abstract interface
@@ -855,6 +855,6 @@ contains
     image_exists = (image>0 .and. image<=num_images())
   end function
 
-#endif /* defined EMULATE_COLLECTIVE_SUBROUTINES || defined EMULATE_CO_REDUCE */
+#endif /* defined EMULATE_COLLECTIVES || defined EMULATE_CO_REDUCE */
 
 end submodule collectives_s

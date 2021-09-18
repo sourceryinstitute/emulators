@@ -10,7 +10,7 @@ module intrinsics_m
   implicit none
 
   private
-#if defined EMULATE_INTRINSIC_FUNCTIONS || defined EMULATE_FINDLOC
+#if defined EMULATE_INTRINSICS || defined EMULATE_FINDLOC
   public :: findloc
 #endif
 
@@ -19,7 +19,7 @@ module intrinsics_m
     end subroutine
   end interface
 
-#if defined EMULATE_INTRINSIC_FUNCTIONS || defined EMULATE_FINDLOC
+#if defined EMULATE_INTRINSICS || defined EMULATE_FINDLOC
 
   interface findloc
 
@@ -48,6 +48,6 @@ module intrinsics_m
 
   end interface
 
-#endif /* EMULATE_INTRINSIC_FUNCTIONS || defined EMULATE_FINDLOC */
+#endif /* EMULATE_INTRINSICS || defined EMULATE_FINDLOC */
 
 end module intrinsics_m
