@@ -49,9 +49,9 @@ Emulators builds with a Fortran compiler that supports the following features:
    - Emulators's Fortran 2018 collective-subroutine emulators use Fortran 2008
      coarrays and synchronization.
 
-Downloand, building and testing
--------------------------------
-# Parallel execution (recommended)
+Downloading, building and testing
+---------------------------------
+### Parallel execution
 With `gfortran` and OpenCoarrays installed, execute the following commands in
 a `bash`-like shell to include all emulators in the build:
 ```
@@ -62,7 +62,7 @@ fpm test \
   --flag "-cpp -DEMULATE_INTRINSICS -DEMULATE_COLLECTIVES"
 ```
 
-# Serial execution
+### Serial execution
 With `gfortran` installed, execute the following commands in
 a `bash`-like shell to include all emulators in the build:
 ```
