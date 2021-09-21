@@ -35,6 +35,10 @@ in language extensions such as the [Sourcery] library's `co_all` subroutine,
 which provides a parallel, collective `logical` operation analogous to the
 `all` intrinsic function.
 
+Documentation
+-------------
+See the [Emulators GitHub Pages site] for HTML documentation generated with [`ford`].
+
 Prerequisites
 -------------
 Emulators builds with a Fortran compiler that supports the following features:
@@ -75,3 +79,5 @@ fpm test --flag "-cpp -DEMULATE_INTRINSICS -DEMULATE_COLLECTIVES -fcoarray=singl
 [issue]: https://github.com/sourceryinstitute/hope/issues
 [pull request]: https://github.com/sourceryinstitute/hope/pulls
 [fpm]: https://github.com/fortran-lang/fpm
+[Emulators GitHub Pages site]: http://sourceryinstitute.github.io/emulators/
+[`ford`]: https://github.com/Fortran-FOSS-Programmers/ford
