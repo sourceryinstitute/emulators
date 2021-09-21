@@ -35,5 +35,5 @@ jobs:
         fpm test \
           --compiler caf \
           --runner "cafrun -n 2" \
-          --profile debug
+          --profile debug \
           --flag "-cpp -DEMULATE_INTRINSICS -DEMULATE_COLLECTIVES"
