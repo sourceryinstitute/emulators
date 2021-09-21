@@ -1,0 +1,39 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+
+    env:
+      FC: gfortran
+      GCC_V: 11
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - uses: fortran-lang/setup-fpm@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Install Dependencies
+      run: |
+        sudo apt install -y gfortran-${GCC_V} cmake mpich
+        sudo update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-${GCC_V} 100
+        git clone https://github.com/sourceryinstitute/opencoarrays
+        mkdir -p opencoarrays/build
+        cd opencoarrays/build
+        cmake ..
+        sudo make -j $(nproc) install
+
+    - name: Build and Test
+      run: |
+        fpm test \
+          --compiler caf \
+          --runner "cafrun -n 2" \
+          --profile debug
+          --flag "-cpp -DEMULATE_INTRINSICS -DEMULATE_COLLECTIVES"
